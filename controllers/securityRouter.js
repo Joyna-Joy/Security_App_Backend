@@ -9,6 +9,7 @@ hashPasswordGenerator=async(pass)=>{
     const salt=await bcrypt.genSalt(10)
     return bcrypt.hash(pass,salt)
 }
+
 //add api
 
 router.post("/add",async(req,res)=>{
@@ -49,6 +50,13 @@ router.post("/login",async(req,res)=>{
     res.json({
         status : "success","userdata":data
     })
+})
+
+//view security
+
+router.get("/viewall",async(req,res)=>{
+    let result=await securityModel.find()
+    res.json(result)
 })
 
 
